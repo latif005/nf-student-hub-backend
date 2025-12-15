@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PengumumanController;
+use App\Http\Controllers\Api\JadwalController;
 
 // Public Routes
 Route::post('/register', [AuthController::class, 'register']);
@@ -17,4 +18,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/pengumuman', [PengumumanController::class, 'index']);
     Route::post('/pengumuman', [PengumumanController::class, 'store']);
+
+    // Jadwal Kuliah
+    Route::get('/jadwal', [JadwalController::class, 'index']);
+    Route::post('/jadwal', [JadwalController::class, 'store']);
 });
