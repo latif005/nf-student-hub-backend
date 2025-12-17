@@ -5,26 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens; // <--- Pastikan ini ada
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $primaryKey = 'id_user'; // Sesuai migration tadi
+    // 👇 WAJIB ADA: Karena kita pakai 'id_user', bukan 'id'
+    protected $primaryKey = 'id_user';
+    public $incrementing = true;    // Pastikan ini true (default)
+    protected $keyType = 'int';     // Pastikan ini int
 
     protected $fillable = [
-        'nama_lengkap',
         'username',
+        'nama_lengkap',
         'email',
         'password',
         'role',
+        'nim',    // Pastikan ini ada
+        'prodi',  // Pastikan ini ada
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
-    
-    // HAPUS protected $casts => password hashed jika ada
 }

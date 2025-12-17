@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Komentar extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['id_user', 'postingan_id', 'isi_komentar'];
+
+    // Relasi ke User (Penulis Komentar)
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
+    }
+}
